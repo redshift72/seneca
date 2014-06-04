@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"
+   xmlns:composite="http://java.sun.com/jsf/composite">
+
+<!-- INTERFACE -->
+<composite:interface>
+   <composite:attribute name="credentials"/>
+   <composite:attribute name="login"/>
+</composite:interface>
+
+<!-- IMPLEMENTATION -->
+<composite:implementation>
+   <rich:panel columns="3" columnClasses="titleCell" id="newLoginPanel" >
+      <h:outputLabel for="username" value="UserName:"/>
+      <h:inputText id="username" value="#{cc.attrs.credentials.username}">
+         <rich:validator/>
+      </h:inputText>
+      <rich:message for="username" errorClass="invalid"/>
+
+      <h:outputLabel for="password" value="PassWord:"/>
+      
+      
+      <h:inputSecret id="password" value="#{cc.attrs.credentials.password}">
+         <rich:validator/>
+      </h:inputSecret>
+      <rich:message for="password" errorClass="invalid"/>
+
+      <h:panelGrid columns="2" >
+                <a4j:commandButton id="login" action="#{cc.attrs.login.login()}" value="Login"
+                                   execute="newLoginPanel" render="newLoginPanel"  rendered="#{!cc.attrs.login.loggedIn}"/>
+                 <a4j:commandButton id="logout" action="#{cc.attrs.login.logout()}" value="Logout"
+                                   execute="newLoginPanel" render="newLoginPanel"   rendered="#{cc.attrs.login.loggedIn}"/>                   
+                <rich:messages globalOnly="true"/>
+      </h:panelGrid>
+   </rich:panel>
+</composite:implementation>
+</html>

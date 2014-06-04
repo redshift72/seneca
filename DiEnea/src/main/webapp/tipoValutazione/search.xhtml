@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{tipoValutazioneBean.page}"/>
+		<f:event type="preRenderView" listener="#{tipoValutazioneBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Tipo Valutazione entities"/>
+
+	<ui:define name="header">
+		Tipo Valutazione
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Tipo Valutazione entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="tipoValutazioneBeanSearchName" value="Name:"/>
+					<h:panelGroup>
+						<h:inputText id="tipoValutazioneBeanSearchName" value="#{tipoValutazioneBean.search.name}"/>
+						<h:message for="tipoValutazioneBeanSearchName" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="tipoValutazioneBeanSearchDescrizione" value="Descrizione:"/>
+					<h:panelGroup>
+						<h:inputText id="tipoValutazioneBeanSearchDescrizione" value="#{tipoValutazioneBean.search.descrizione}"/>
+						<h:message for="tipoValutazioneBeanSearchDescrizione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{tipoValutazioneBean.search}"/>
+					<h:commandLink value="Create New" action="#{tipoValutazioneBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="tipoValutazioneBeanPageItems" styleClass="data-table" value="#{tipoValutazioneBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name"/>
+					</f:facet>
+					<h:link outcome="/tipoValutazione/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemName" value="#{_item.name}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrizione"/>
+					</f:facet>
+					<h:link outcome="/tipoValutazione/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescrizione" value="#{_item.descrizione}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{tipoValutazioneBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

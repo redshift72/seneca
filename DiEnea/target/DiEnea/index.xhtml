@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:my="http://java.sun.com/jsf/composite/components"
+     xmlns:myy="http://java.sun.com/jsf/composite/components/my"
+	template="/resources/scaffold/pageTemplate.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:h="http://java.sun.com/jsf/html">                                                
+
+	<ui:param name="pageTitle" value="Welcome to Forge" />
+
+	<ui:define name="header">
+		Welcome to Ene@
+	</ui:define>
+
+	<ui:define name="subheader">
+		Enter your credential
+	</ui:define>
+
+	<ui:define name="main">
+	
+		<p>
+	<h:form id="loginForm">	
+	<rich:panel columns="3" columnClasses="titleCell" id="newLoginPanel" >
+      <h:outputLabel for="username" value="Username:"/>
+      <h:inputText id="username" value="#{credentials.username}">
+         <rich:validator/>
+      </h:inputText>
+      <rich:message for="username" errorClass="invalid"/>
+
+      <h:outputLabel for="password" value="Password:"/>
+      
+      
+      <h:inputSecret id="password" value="#{credentials.password}">
+         <rich:validator/>
+      </h:inputSecret>
+      <rich:message for="password" errorClass="invalid"/>
+
+      <h:panelGrid columns="2" >
+                <a4j:commandButton id="login1" action="#{login.login}" value="Login"
+                                   execute="username,password" render="@all"  rendered="#{!login.loggedIn}"/>
+                 <a4j:commandButton id="logout1" action="#{login.logout}" value="Logout"
+                                   execute="@form" render="@all"   rendered="#{login.loggedIn}"/>                   
+                <rich:messages globalOnly="true"/>
+      </h:panelGrid>
+   </rich:panel>
+		</h:form>
+		
+		
+	<!--  	<myy:loginForm  credentials="#{credentials}" login= "#{login}"  execute="@form"  render="reg" />  -->
+			<a target="_blank"
+				href="https://docs.jboss.org/author/display/FORGE">Documentation</a>
+			| <a target="_blank"
+				href="http://twitter.com/intent/tweet?text=I+just+built+and+deployed+a+webapp+using+%23Forge,+from+%23JBoss+-+Super+easy!+(+http://jboss.org/forge+)">Get
+				Excited!</a><br /> <a target="_blank" href="http://jboss.org/forge"><br />
+				Forge Project</a> | <a target="_blank"
+				href="https://lists.jboss.org/mailman/listinfo/forge-users">User
+				List</a> | <a target="_blank"
+				href="https://issues.jboss.org/browse/FORGE">Report an issue</a>
+		</p>
+		<p style="text-align: right; padding-top: 50px">
+			<a target="_blank" href="http://jboss.org"><img
+				src="#{resource['jboss-community.png']}"
+				alt="JBoss and JBoss Community" width="254" height="31" border="0" />
+			</a> <br /> 
+		</p>
+	</ui:define>
+
+</ui:composition>

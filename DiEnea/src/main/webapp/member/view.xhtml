@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{usersBean.id}"/>
+		<f:event type="preRenderView" listener="#{usersBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Member"/>
+
+	<ui:define name="header">
+		Member
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Users
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+		     <h:outputLabel for="memberBeanMemberUserName" value="UserName:"/>
+			<h:outputText id="memberBeanMemberUserName" value="#{usersBean.user.username}"/>
+			<h:outputText/>
+			<h:outputLabel for="memberBeanMemberName" value="Name:"/>
+			<h:outputText id="memberBeanMemberName" value="#{usersBean.user.name}"/>
+			<h:outputText/>
+			<h:outputLabel for="memberBeanMemberEmail" value="Email:"/>
+			<h:outputText id="memberBeanMemberEmail" value="#{usersBean.user.email}"/>
+			<h:outputText/>
+			<h:outputLabel for="memberBeanMemberPhoneNumber" value="Phone Number:"/>
+			<h:outputText id="memberBeanMemberPhoneNumber" value="#{usersBean.user.phoneNumber}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

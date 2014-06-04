@@ -1,0 +1,38 @@
+@import "../reindeer/legacy-styles.css";
+
+.v-generated-body, .v-app, .v-ui, .v-ui-embedded, .v-table {
+	background: transparent;
+}
+.v-panel  {
+	 z-index: -1;
+    background-color: #eeeeee;
+    background: rgba(238, 238, 238, 0.6);
+}
+.v-table-cell-content-rosso{
+    background: rgba(255, 0, 0, 1.0);
+    
+}
+.v-table-cell-content-arancio{
+    background: rgba(191, 63, 0, 1.0);
+   
+}
+.v-table-cell-content-giallo{
+    background: rgba(127, 127, 0, 1.0);
+    
+}
+.v-table-cell-content-verdino{
+    background: rgba(127, 170, 0, 1.0);
+    
+}
+.v-table-cell-content-verde{
+    background: rgba(63, 170, 0, 1.0);
+    
+}
+.v-table-cell-content-verdissimo{
+    background: rgba(0, 255, 0, 1.0);
+    
+}
+#.v-table-cell-content-white{
+#    background-color: white;
+#    
+#}

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{edificioBean.page}"/>
+		<f:event type="preRenderView" listener="#{edificioBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Edificio entities"/>
+
+	<ui:define name="header">
+		Edifici
+	</ui:define>
+
+	<ui:define name="subheader">
+		Cerca modifica crea Edifici
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="edificioBeanSearchNome" value="Nome:"/>
+					<h:panelGroup>
+						<h:inputText id="edificioBeanSearchNome" value="#{edificioBean.search.nome}"/>
+						<h:message for="edificioBeanSearchNome" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="edificioBeanSearchTipoEdificio" value="Tipo Edificio:"/>
+					<h:panelGroup>
+						<h:selectOneMenu  id="edificioBeanSearchTipoEdificio" value="#{edificioBean.search.tipologiaEdifici}">
+							<f:selectItem itemLabel="--Seleziona un tipo di Edificio--" noSelectionOption="true" />
+							<f:selectItems value="#{edificioBean.tipologiaEdificioAll}" var="#{n}" itemLabel="#{n}"/>
+						</h:selectOneMenu>
+						<h:message for="edificioBeanSearchTipoEdificio" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="edificioBeanSearchAzienda" value="Azienda:"/>
+					<h:panelGroup>
+						<h:selectOneMenu converter="#{aziendaBean.converter}"  id="edificioBeanSearchAzienda" value="#{edificioBean.search.azienda}">
+							<f:selectItem itemLabel="--Seleziona una Azienda--" noSelectionOption="true" />
+							<f:selectItems value="#{aziendaBean.all}" var="n" itemLabel="#{n.nome}" itemValue="#{n.nome}"/>
+						</h:selectOneMenu>
+						<h:message for="edificioBeanSearchAzienda" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{edificioBean.search}"/>
+					<h:commandLink value="Create New" action="#{edificioBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="edificioBeanPageItems" styleClass="data-table" value="#{edificioBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/edificio/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemNomeEdificio" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Edificio"/>
+					</f:facet>
+					<h:link outcome="/edificio/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipoEdificio" value="#{_item.tipologiaEdifici}"/>
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Azienda"/>
+					</f:facet>
+					<h:link outcome="/edificio/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemAziendaEdificio" value="#{_item.azienda.nome}"/>
+					</h:link>
+				</h:column>
+				
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{edificioBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

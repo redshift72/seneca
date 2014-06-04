@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"	
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{edificioBean.id}"/>
+		<f:event type="preRenderView" listener="#{edificioBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Edificio"/>
+
+	<ui:define name="header">
+		Edificio
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test="#{!empty edificioBean.id}">
+				Edit existing Edificio
+			</c:when>
+			<c:otherwise>
+				Create a new Edificio
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="edificioBeanEdificioNome" value="Nome:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioNome" value="#{edificioBean.edificio.nome}"/>
+					<h:message for="edificioBeanEdificioNome" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioAreaCalpestabile" value="Area Calpestabile:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioAreaCalpestabile" value="#{edificioBean.edificio.areaCalpestabile}"/>
+					<h:message for="edificioBeanEdificioAreaCalpestabile" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioAreaDisperdente" value="Area Disperdente:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioAreaDisperdente" value="#{edificioBean.edificio.areaDisperdente}"/>
+					<h:message for="edificioBeanEdificioAreaDisperdente" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioVolumeTotale" value="Volume Totale:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioVolumeTotale" value="#{edificioBean.edificio.volumeTotale}"/>
+					<h:message for="edificioBeanEdificioVolumeTotale" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioConsumoElettricoTot" value="Consumo Elettrico Tot:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioConsumoElettricoTot" value="#{edificioBean.edificio.consumoElettricoTot}"/>
+					<h:message for="edificioBeanEdificioConsumoElettricoTot" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioConsumoTermicoTot" value="Consumo Termico Tot:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioConsumoTermicoTot" value="#{edificioBean.edificio.consumoTermicoTot}"/>
+					<h:message for="edificioBeanEdificioConsumoTermicoTot" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioConsumoIdricoTot" value="Consumo Idrico Tot:"/>
+				<h:panelGroup>
+					<h:inputText id="edificioBeanEdificioConsumoIdricoTot" value="#{edificioBean.edificio.consumoIdricoTot}"/>
+					<h:message for="edificioBeanEdificioConsumoIdricoTot" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioTipoEdificio" value="Tipo Edificio:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{tipoEdificioBean.converter}" id="edificioBeanEdificioTipoEdificio" required="true" value="#{edificioBean.edificio.tipoEdificio}">
+						<f:selectItems value="#{tipoEdificioBean.all}"/>
+					</h:selectOneMenu>
+					<h:message for="edificioBeanEdificioTipoEdificio" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+				<h:outputLabel for="edificioBeanEdificioComposizione" value="Composizione:"/>
+				<h:panelGroup>
+					<h:selectOneMenu converter="#{composizioneEdificiBean.converter}" id="edificioBeanEdificioComposizione" value="#{edificioBean.edificio.composizione}">
+						<f:selectItem/>
+						<f:selectItems value="#{composizioneEdificiBean.all}"/>
+					</h:selectOneMenu>
+					<h:message for="edificioBeanEdificioComposizione" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel value="Esposizione Vetri:"/>
+				<h:panelGroup>
+					<h:commandLink action="#{edificioBean.edificio.newEsposizioneVetri}" rendered="#{empty edificioBean.edificio.esposizioneVetri}" value="Create New Esposizione Vetri"/>
+					<h:panelGrid columnClasses="label,component,required" columns="3" rendered="#{!empty edificioBean.edificio.esposizioneVetri}">
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateNord" value="Sup Vetrate Nord:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateNord" value="#{edificioBean.edificio.esposizioneVetri.supVetrateNord}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateNord" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateNordEst" value="Sup Vetrate Nord Est:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateNordEst" value="#{edificioBean.edificio.esposizioneVetri.supVetrateNordEst}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateNordEst" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateEst" value="Sup Vetrate Est:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateEst" value="#{edificioBean.edificio.esposizioneVetri.supVetrateEst}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateEst" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateSudEst" value="Sup Vetrate Sud Est:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateSudEst" value="#{edificioBean.edificio.esposizioneVetri.supVetrateSudEst}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateSudEst" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateSud" value="Sup Vetrate Sud:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateSud" value="#{edificioBean.edificio.esposizioneVetri.supVetrateSud}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateSud" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateSudOvest" value="Sup Vetrate Sud Ovest:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateSudOvest" value="#{edificioBean.edificio.esposizioneVetri.supVetrateSudOvest}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateSudOvest" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateOvest" value="Sup Vetrate Ovest:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateOvest" value="#{edificioBean.edificio.esposizioneVetri.supVetrateOvest}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateOvest" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateNordOvest" value="Sup Vetrate Nord Ovest:"/>
+						<h:panelGroup>
+							<h:inputText id="edificioBeanEdificioEsposizioneVetriSupVetrateNordOvest" value="#{edificioBean.edificio.esposizioneVetri.supVetrateNordOvest}"/>
+							<h:message for="edificioBeanEdificioEsposizioneVetriSupVetrateNordOvest" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action="#{edificioBean.update}"/>
+				<c:choose>
+					<c:when test="#{!empty edificioBean.id}">
+						<h:link value="Cancel" outcome="view">
+							<f:param name="id" value="#{edificioBean.id}"/>
+						</h:link>
+						<h:commandLink value="Delete" action="#{edificioBean.delete}"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

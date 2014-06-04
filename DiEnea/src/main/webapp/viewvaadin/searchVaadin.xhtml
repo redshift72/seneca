@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageVaadinTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{comuneBean.page}"/>
+		<f:event type="preRenderView" listener="#{comuneBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Comune entities"/>
+
+	<ui:define name="header">
+		Comune
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Comune entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+	 <!-- So here comes the div element in which the Vaadin -->
+     <!-- application is embedded.                          -->
+     <div style="width: 300px; border: 2px solid green;"
+       id="helloworld" class="v-app">
+    <!-- Optional placeholder for the loading indicator -->
+    <div class=" v-app-loading"></div>
+
+    <!-- Alternative fallback text -->
+    <noscript>You have to enable javascript in your browser to
+              use an application built with Vaadin.</noscript>
+  </div>
+		
+			
+	</ui:define>
+
+</ui:composition>

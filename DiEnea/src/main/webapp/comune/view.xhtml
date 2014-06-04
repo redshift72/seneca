@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{comuneBean.id}"/>
+		<f:event type="preRenderView" listener="#{comuneBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Comune"/>
+
+	<ui:define name="header">
+		Comune
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Comune
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="comuneBeanComuneIdRegione" value="Id Regione:"/>
+			<h:outputText id="comuneBeanComuneIdRegione" value="#{comuneBean.comune.idRegione}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneDescrizione" value="Descrizione:"/>
+			<h:outputText id="comuneBeanComuneDescrizione" value="#{comuneBean.comune.descrizione}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneProvincia" value="Provincia:"/>
+			<h:outputText id="comuneBeanComuneProvincia" value="#{comuneBean.comune.provincia}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneAltitudine" value="Altitudine:"/>
+			<h:outputText id="comuneBeanComuneAltitudine" value="#{comuneBean.comune.altitudine}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneZona" value="Zona:"/>
+			<h:outputText id="comuneBeanComuneZona" value="#{comuneBean.comune.zona}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneGradigiorno" value="Gradigiorno:"/>
+			<h:outputText id="comuneBeanComuneGradigiorno" value="#{comuneBean.comune.gradigiorno}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneTempEsterna" value="Temp Esterna:"/>
+			<h:outputText id="comuneBeanComuneTempEsterna" value="#{comuneBean.comune.tempEsterna}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneLatitudine" value="Latitudine:"/>
+			<h:outputText id="comuneBeanComuneLatitudine" value="#{comuneBean.comune.latitudine}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneLongitudine" value="Longitudine:"/>
+			<h:outputText id="comuneBeanComuneLongitudine" value="#{comuneBean.comune.longitudine}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneZonaVento" value="Zona Vento:"/>
+			<h:outputText id="comuneBeanComuneZonaVento" value="#{comuneBean.comune.zonaVento}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneZonaGeo" value="Zona Geo:"/>
+			<h:outputText id="comuneBeanComuneZonaGeo" value="#{comuneBean.comune.zonaGeo}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneProv1" value="Prov 1:"/>
+			<h:outputText id="comuneBeanComuneProv1" value="#{comuneBean.comune.prov1}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneProv2" value="Prov 2:"/>
+			<h:outputText id="comuneBeanComuneProv2" value="#{comuneBean.comune.prov2}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresGen" value="Pres Gen:"/>
+			<h:outputText id="comuneBeanComunePresGen" value="#{comuneBean.comune.presGen}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresFeb" value="Pres Feb:"/>
+			<h:outputText id="comuneBeanComunePresFeb" value="#{comuneBean.comune.presFeb}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresMar" value="Pres Mar:"/>
+			<h:outputText id="comuneBeanComunePresMar" value="#{comuneBean.comune.presMar}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresApr" value="Pres Apr:"/>
+			<h:outputText id="comuneBeanComunePresApr" value="#{comuneBean.comune.presApr}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresMag" value="Pres Mag:"/>
+			<h:outputText id="comuneBeanComunePresMag" value="#{comuneBean.comune.presMag}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresGiu" value="Pres Giu:"/>
+			<h:outputText id="comuneBeanComunePresGiu" value="#{comuneBean.comune.presGiu}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresLug" value="Pres Lug:"/>
+			<h:outputText id="comuneBeanComunePresLug" value="#{comuneBean.comune.presLug}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresAgo" value="Pres Ago:"/>
+			<h:outputText id="comuneBeanComunePresAgo" value="#{comuneBean.comune.presAgo}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresSet" value="Pres Set:"/>
+			<h:outputText id="comuneBeanComunePresSet" value="#{comuneBean.comune.presSet}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresOtt" value="Pres Ott:"/>
+			<h:outputText id="comuneBeanComunePresOtt" value="#{comuneBean.comune.presOtt}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresNov" value="Pres Nov:"/>
+			<h:outputText id="comuneBeanComunePresNov" value="#{comuneBean.comune.presNov}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComunePresDic" value="Pres Dic:"/>
+			<h:outputText id="comuneBeanComunePresDic" value="#{comuneBean.comune.presDic}"/>
+			<h:outputText/>
+			<h:outputLabel for="comuneBeanComuneCodiceIstat" value="Codice Istat:"/>
+			<h:outputText id="comuneBeanComuneCodiceIstat" value="#{comuneBean.comune.codiceIstat}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

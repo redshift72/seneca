@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich">      
+	<h:head>
+	
+	  <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8" />
+       <meta http-equiv="X-UA-Compatible"
+               content="IE=9;chrome=1" />
+ 
+     <title>#{empty pageTitle ? '{#pageTitle}' : pageTitle}</title>
+  
+     <!-- Set up the favicon from the Vaadin theme -->
+     <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/VAADIN/themes/reindeer/favicon.ico" />
+     <link rel="icon" type="image/vnd.microsoft.icon" href="/VAADIN/themes/reindeer/favicon.ico" /> 
+	
+		
+	
+	  	<h:outputStylesheet  target="head" name="forge-style.css" /> 
+	
+     </h:head>
+<h:body>	
+	<!-- Loads the Vaadin widget set, etc. -->
+  <script type="text/javascript"
+          src="./../VAADIN/vaadinBootstrap.js"></script>
+
+  <!-- GWT requires an invisible history frame. It is   -->
+  <!-- needed for page/fragment history in the browser. -->
+  <iframe tabindex="-1" id="__gwt_historyFrame"
+          style="position: absolute; width: 0; height: 0;
+                 border: 0; overflow: hidden"
+          src="javascript:false"></iframe>
+  <h1>Embedding a Vaadin UI</h1>
+    
+  <p>This is a static web page that contains an embedded Vaadin
+     application. It's here:</p>
+
+  
+  <script type="text/javascript">//<![CDATA[
+    if (!window.vaadin)
+        alert("Failed to load the bootstrap JavaScript: "+
+              "./../VAADIN/vaadinBootstrap.js");
+
+    /* The UI Configuration */
+	vaadin.initApplication("vaadinUI", {
+	    "browserDetailsUrl": "./../VAADIN/vaadinUI",
+	    "widgetset": "com.example.documentmanager.widgetset.DocumentmanagerWidgetset",
+	    "theme": "mytheme",
+	    "versionInfo": {"vaadinVersion": "7.0.4"},
+	    "vaadinDir": "./../VAADIN/",
+	    "heartbeatInterval": 300,
+	    "debug": true,
+	    "standalone": false,
+	    "authErrMsg": {
+	        "message": "Take note of any unsaved data, "+
+	                   "and <u>click here<\/u> to continue.",
+	        "caption": "Authentication problem"
+	    },
+	    "comErrMsg": {
+	        "message": "Take note of any unsaved data, "+
+	                   "and <u>click here<\/u> to continue.",
+	        "caption": "Communication problem"
+	    },
+	    "sessExpMsg": {
+	        "message": "Take note of any unsaved data, "+
+	                   "and <u>click here<\/u> to continue.",
+	        "caption": "Session Expired"
+	    }
+ });//]]>
+ </script>
+ <p>Please view the page source to see how embedding works.</p>
+		<div id="wrapper">
+	
+			<div id="navigation">
+				<h:link id="homeLink" outcome="/index.xhtml" rendered="#{login.loggedIn}">
+					<img src="#{resource['Home.png']}" alt="torna indietro" border="0" style="align: center; width : 58px; height : 47px;"/>
+				</h:link>
+				<h:panelGroup  rendered="#{login.loggedIn}" >
+				<div class="navigationPanelOpacity" >
+				<div class="navigationPanel" >
+				<ul>		
+					<li>
+						<h:link outcome="/azienda/search" value="Azienda"/>
+					</li>
+					<li>
+						<h:link outcome="/composizioneEdifici/search" value="Composizione Edifici"/>
+					</li>
+					<li>
+						<h:link outcome="/comune/search" value="Comune"/>
+					</li>
+					<li>
+						<h:link outcome="/edificio/search" value="Edificio"/>
+					</li>
+				<!-- 	<li>   -->
+				<!--		<h:link outcome="/gradigiorno/search" value="Gradigiorno"/>   -->
+				<!--	</li>   -->
+					<li>
+						<h:link outcome="/interventoMigliorativo/search" value="Intervento Migliorativo"/>
+					</li>
+					<li>
+						<h:link outcome="/member/search" value="Member"/>
+					</li>				
+					<li>
+						<h:link outcome="/paramIntervento/search" value="Param Intervento"/>
+					</li>
+					<li>
+						<h:link outcome="/profiloUsoConsumo/search" value="Profilo Uso Consumo"/>
+					</li>
+					<li>
+						<h:link outcome="/risultatoValutazioneIntervento/search" value="Risultato Valutazione Intervento"/>
+					</li>
+					<li>
+						<h:link outcome="/tipoEdificio/search" value="Tipo Edificio"/>
+					</li>
+					<li>
+						<h:link outcome="/tipoParIntervento/search" value="Tipo Par Intervento"/>
+					</li>
+					<li>
+						<h:link outcome="/tipoValutazione/search" value="Tipo Valutazione"/>
+					</li>
+					<li>
+						<h:link outcome="/valutazione/search" value="Valutazione"/>
+					</li>
+					<li>
+						<h:link outcome="/viewvaadin/searchVaadin" value="User Admin"/>
+					</li>
+				</ul>
+				</div>
+				</div>
+				</h:panelGroup>			
+			</div>
+		    
+			<div id="content">
+				<div class="mainHeader">
+				<h1><ui:insert name="header"/></h1>		
+				<h2><ui:insert name="subheader"/></h2>
+		       </div>
+		       <div class="mainContentOpacity" >
+		         <div class="mainContent">
+				    <ui:insert name="main"/>
+                 </div>
+			   </div>
+				
+				<div id="footer">
+				    <h:form>
+				    <div class="userLoggedIn"  >
+				    <h:outputLabel  rendered="#{login.loggedIn}" value="User: #{login.currentUser.username} " />
+				    <h:commandButton id="LogOutLink" action="#{login.logout()}" value="  LogOut " rendered="#{login.loggedIn}" />
+				    </div>
+					<div class="byName">by redShift72</div>
+					</h:form>
+				</div>
+			</div>		
+		</div>	
+		<h:outputStylesheet  name="forge-style.css" target="head" />	
+	</h:body>
+</html>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{gradigiornoBean.page}"/>
+		<f:event type="preRenderView" listener="#{gradigiornoBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Gradigiorno entities"/>
+
+	<ui:define name="header">
+		Gradigiorno
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Gradigiorno entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="gradigiornoBeanSearchCodReg" value="Cod Reg:"/>
+					<h:panelGroup>
+						<rich:inputNumberSpinner cycled="false" id="gradigiornoBeanSearchCodReg" maxValue="999999999" value="#{gradigiornoBean.search.codReg}"/>
+						<h:message for="gradigiornoBeanSearchCodReg" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="gradigiornoBeanSearchCodProv" value="Cod Prov:"/>
+					<h:panelGroup>
+						<rich:inputNumberSpinner cycled="false" id="gradigiornoBeanSearchCodProv" maxValue="999999999" value="#{gradigiornoBean.search.codProv}"/>
+						<h:message for="gradigiornoBeanSearchCodProv" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="gradigiornoBeanSearchAltitudine" value="Altitudine:"/>
+					<h:panelGroup>
+						<rich:inputNumberSpinner cycled="false" id="gradigiornoBeanSearchAltitudine" maxValue="999999999" value="#{gradigiornoBean.search.altitudine}"/>
+						<h:message for="gradigiornoBeanSearchAltitudine" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="gradigiornoBeanSearchComune" value="Comune:"/>
+					<h:panelGroup>
+						<h:inputText id="gradigiornoBeanSearchComune" maxLength="50" value="#{gradigiornoBean.search.comune}"/>
+						<h:message for="gradigiornoBeanSearchComune" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="gradigiornoBeanSearchGradiGiorni" value="Gradi Giorni:"/>
+					<h:panelGroup>
+						<rich:inputNumberSpinner cycled="false" id="gradigiornoBeanSearchGradiGiorni" maxValue="999999999" value="#{gradigiornoBean.search.gradiGiorni}"/>
+						<h:message for="gradigiornoBeanSearchGradiGiorni" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{gradigiornoBean.search}"/>
+					<h:commandLink value="Create New" action="#{gradigiornoBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="gradigiornoBeanPageItems" styleClass="data-table" value="#{gradigiornoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cod Reg"/>
+					</f:facet>
+					<h:link outcome="/gradigiorno/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemCodReg" value="#{_item.codReg}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cod Prov"/>
+					</f:facet>
+					<h:link outcome="/gradigiorno/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemCodProv" value="#{_item.codProv}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Altitudine"/>
+					</f:facet>
+					<h:link outcome="/gradigiorno/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemAltitudine" value="#{_item.altitudine}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Comune"/>
+					</f:facet>
+					<h:link outcome="/gradigiorno/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemComune" value="#{_item.comune}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Gradi Giorni"/>
+					</f:facet>
+					<h:link outcome="/gradigiorno/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemGradiGiorni" value="#{_item.gradiGiorni}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{gradigiornoBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

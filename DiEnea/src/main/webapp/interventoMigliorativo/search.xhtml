@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{interventoMigliorativoBean.page}"/>
+		<f:event type="preRenderView" listener="#{interventoMigliorativoBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Intervento Migliorativo entities"/>
+
+	<ui:define name="header">
+		Intervento Migliorativo
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Intervento Migliorativo entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="interventoMigliorativoBeanSearchDescrizione" value="Descrizione:"/>
+					<h:panelGroup>
+						<h:inputText id="interventoMigliorativoBeanSearchDescrizione" value="#{interventoMigliorativoBean.search.descrizione}"/>
+						<h:message for="interventoMigliorativoBeanSearchDescrizione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="interventoMigliorativoBeanSearchTipo" value="Tipo:"/>
+					<h:panelGroup>
+						<h:selectOneMenu converter="#{tipoValutazioneBean.converter}" id="interventoMigliorativoBeanSearchTipo" value="#{interventoMigliorativoBean.search.tipo}">
+							<f:selectItems value="#{tipoValutazioneBean.all}"/>
+						</h:selectOneMenu>
+						<h:message for="interventoMigliorativoBeanSearchTipo" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="interventoMigliorativoBeanSearchCalcolo" value="Calcolo:"/>
+					<h:panelGroup>
+						<h:inputText id="interventoMigliorativoBeanSearchCalcolo" value="#{interventoMigliorativoBean.search.calcolo}"/>
+						<h:message for="interventoMigliorativoBeanSearchCalcolo" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{interventoMigliorativoBean.search}"/>
+					<h:commandLink value="Create New" action="#{interventoMigliorativoBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="interventoMigliorativoBeanPageItems" styleClass="data-table" value="#{interventoMigliorativoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrizione"/>
+					</f:facet>
+					<h:link outcome="/interventoMigliorativo/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescr" value="#{_item.descrizione}"/>
+					</h:link>
+				</h:column>
+			    <h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo"/>
+					</f:facet>
+					<h:link outcome="/interventoMigliorativo/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipo" value="#{_item.tipo.name} (#{_item.tipo.descrizione})"/>
+					</h:link>
+				</h:column>
+			
+			
+			
+			
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{interventoMigliorativoBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

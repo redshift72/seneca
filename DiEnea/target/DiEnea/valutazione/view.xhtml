@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{valutazioneBean.id}"/>
+		<f:event type="preRenderView" listener="#{valutazioneBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Valutazione"/>
+
+	<ui:define name="header">
+		Valutazione
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Valutazione
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="valutazioneBeanValutazioneOwner" value="Owner:"/>
+			<h:link id="valutazioneBeanValutazioneOwner" outcome="/user/view" value="#{valutazioneBean.valutazione.owner}">
+				<f:param name="id" value="#{valutazioneBean.valutazione.owner.username}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="valutazioneBeanValutazioneCreazione" value="Creazione:"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3" id="valutazioneBeanValutazioneCreazione"/>
+			<h:outputText/>
+			<h:outputLabel for="valutazioneBeanValutazioneAzienda" value="Azienda:"/>
+			<h:link id="valutazioneBeanValutazioneAzienda" outcome="/azienda/view" value="#{valutazioneBean.valutazione.azienda}">
+				<f:param name="id" value="#{valutazioneBean.valutazione.azienda.id}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="valutazioneBeanValutazioneConsumiInUso" value="Consumi In Uso:"/>
+			<h:dataTable id="valutazioneBeanValutazioneConsumiInUso" styleClass="data-table" value="#{valutazioneBean.valutazione.consumiInUso}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/profiloUsoConsumo/view">
+						<f:param name="id" value="#{_item.Id}"/>
+						<h:outputText id="itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo"/>
+					</f:facet>
+					<h:link outcome="/profiloUsoConsumo/view">
+						<f:param name="id" value="#{_item.Id}"/>
+						<h:outputText id="itemTipo" value="#{_item.tipo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Composizione Edificio"/>
+					</f:facet>
+					<h:link outcome="/profiloUsoConsumo/view">
+						<f:param name="id" value="#{_item.Id}"/>
+						<h:outputText id="itemComposizioneEdificio" value="#{_item.composizioneEdificio}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="valutazioneBeanValutazioneTipo" value="Tipo:"/>
+			<h:link id="valutazioneBeanValutazioneTipo" outcome="/tipoValutazione/view" value="#{valutazioneBean.valutazione.tipo}">
+				<f:param name="id" value="#{valutazioneBean.valutazione.tipo.id}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="valutazioneBeanValutazioneInterventi" value="Interventi:"/>
+			<h:dataTable id="valutazioneBeanValutazioneInterventi" styleClass="data-table" value="#{valutazioneBean.valutazione.interventi}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo"/>
+					</f:facet>
+					<h:link outcome="/interventoMigliorativo/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipo" value="#{_item.tipo}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="valutazioneBeanValutazioneRisultati" value="Risultati:"/>
+			<h:dataTable id="valutazioneBeanValutazioneRisultati" styleClass="data-table" value="#{valutazioneBean.valutazione.risultati}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Valutazione"/>
+					</f:facet>
+					<h:link outcome="/risultatoValutazioneIntervento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemValutazione" value="#{_item.valutazione}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Intervento"/>
+					</f:facet>
+					<h:link outcome="/risultatoValutazioneIntervento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemIntervento" value="#{_item.intervento}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Risultato"/>
+					</f:facet>
+					<h:link outcome="/risultatoValutazioneIntervento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemRisultato" value="#{_item.risultato}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

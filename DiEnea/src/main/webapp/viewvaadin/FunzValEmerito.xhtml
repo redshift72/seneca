@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	
+
+	<ui:param name="pageTitle" value="Funzioni Di Valutazione e Merito"/>
+
+	<ui:define name="header">
+		Gestione Funzione Di Valutazione e Merito
+	</ui:define>
+
+	<ui:define name="subheader">
+		Cerca modifica crea Funzioni</ui:define>
+	
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+	<script type="text/javascript">
+	    var urlParts = window.location.href.split("?");
+        var queryString = (urlParts.length == 1) ? "" : "?" + urlParts[1];
+        queryString = (urlParts.length == 0) ? "" : queryString.split("#")[0];
+        var srcFull ="./../VAADIN/cEd"+queryString;
+
+        function call()
+        {
+            window.location.href='./..';
+
+            }
+        
+	    </script>
+		<iframe src="./../VAADIN/funzVal" height="99%"
+                  width="100%" frameborder="0"  seamless="seamless" allowTransparency="true" ></iframe>
+			
+	</ui:define>
+
+</ui:composition>

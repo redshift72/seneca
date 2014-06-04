@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core">      
+
+	<h:head>
+	    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=8"/>
+		<title>#{empty pageTitle ? '{#pageTitle}' : pageTitle}</title>
+	<!--  	<link rel="icon" href="#{resource['favicon.ico']}" /> -->
+	  	<h:outputStylesheet  target="head" name="forge-style.css" /> 
+	<!--  	<h:outputStylesheet name="screen.css" library="css"/> -->
+	</h:head>
+	
+	<h:body>	
+	
+		<div id="wrapper">
+	
+			<div id="navigation">
+			<f:loadBundle basename="prg" var="versione"/>
+				<h:link id="homeLink" outcome="/index.xhtml" rendered="#{login.loggedIn}">
+					<img src="#{resource['Home.png']}" alt="torna indietro" border="0" style="align: center; width : 58px; height : 47px;"/>
+				</h:link>
+				<h:panelGroup  rendered="#{login.loggedIn}" >
+				<div class="navigationPanelOpacity" >
+				<div class="navigationPanel" >
+				<ul>
+				<ui:repeat  value="#{menuItemBean.allaccess}" var="item" varStatus="myVarStatus">
+				<li>
+						<h:link outcome="#{item.link}" value="#{myVarStatus.index+1} #{item.label}"/>
+		       </li>
+				</ui:repeat>
+				   		
+				   		
+				   		
+					
+				</ul>
+				</div>
+				</div>
+				</h:panelGroup>			
+			</div>
+		    
+			<div id="content">
+				<div class="mainHeader">
+				
+				<div class="logos" style="text-align: right;">
+				<h1>
+				<div class="titleHead" style="text-align: center;" >
+				    <ui:insert name="header"/>
+				</div>
+				 <img src="#{resource['nuovo_lecop.png']}" alt="torna indietro" border="0" style="text-align: right;width : 91px; height : 40px;"/>
+		         <img src="#{resource['LOGO_LAERTE.png']}" alt="torna indietro" border="0" style="text-align: right; width : 91px; height : 43px;"/>
+		         <img src="#{resource['logo_ENEA.png']}" alt="torna indietro" border="0" style="text-align: right; width : 100px; height : 40px;"/>
+                </h1>	
+                </div>
+				
+				<h2><ui:insert name="subheader"/></h2>
+		       </div>
+		       <div class="mainContentOpacity" >
+		         <div class="mainContent">
+				    <ui:insert name="main"/>
+                 </div>
+			   </div>
+				
+				<div id="footer">
+				    <h:form>
+				    <div class="userLoggedIn"  >
+				    <h:outputLabel  rendered="#{login.loggedIn}" value="Utente: #{login.currentUser.username}  Dominio: #{login.currentDomain.name} " />
+				    <h:commandButton id="LogOutLink" action="#{login.logout()}" value="  LogOut " rendered="#{login.loggedIn}" />
+				    </div>
+					<div class="byName">by redShift72 &nbsp;ver:  #{versione.ver}</div>					
+					</h:form>
+				</div>
+			</div>		
+		</div>	
+		<h:outputStylesheet  name="forge-style.css" target="head" />	
+	</h:body>
+</html>

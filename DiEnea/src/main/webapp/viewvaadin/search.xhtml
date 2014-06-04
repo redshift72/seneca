@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{comuneBean.page}"/>
+		<f:event type="preRenderView" listener="#{comuneBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Users entities"/>
+
+	<ui:define name="header">
+		Utenti
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Users entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+	<script type="text/javascript">
+	    var urlParts = window.location.href.split("?");
+        var queryString = (urlParts.length == 1) ? "" : "?" + urlParts[1];
+        queryString = (urlParts.length == 0) ? "" : queryString.split("#")[0];
+        var srcFull ="./../VAADIN/cEd"+queryString;
+
+        function call()
+        {
+            window.location.href='./..';
+
+            }
+        
+	    </script>
+		<iframe src="./../VAADIN/vUser" height="99%"
+                  width="100%" frameborder="0"  seamless="seamless" allowTransparency="true" ></iframe>
+			
+	</ui:define>
+
+</ui:composition>

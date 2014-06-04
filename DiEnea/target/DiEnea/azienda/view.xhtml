@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{aziendaBean.id}"/>
+		<f:event type="preRenderView" listener="#{aziendaBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Azienda"/>
+
+	<ui:define name="header">
+		Azienda
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Azienda
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="aziendaBeanAziendaNome" value="Nome:"/>
+			<h:outputText id="aziendaBeanAziendaNome" value="#{aziendaBean.azienda.nome}"/>
+			<h:outputText/>
+			<h:outputLabel for="aziendaBeanAziendaTipo" value="Tipo:"/>
+			<h:outputText id="aziendaBeanAziendaTipo" value="#{aziendaBean.azienda.tipo}"/>
+			<h:outputText/>
+			<h:outputLabel for="aziendaBeanAziendaCFoPI" value="CF o PI:"/>
+			<h:outputText id="aziendaBeanAziendaCFoPI" value="#{aziendaBean.azienda.CFoPI}"/>
+			<h:outputText/>
+			<h:outputLabel for="aziendaBeanAziendaDescrizione" value="Descrizione:"/>
+			<h:outputText id="aziendaBeanAziendaDescrizione" value="#{aziendaBean.azienda.descrizione}"/>
+			<h:outputText/>
+			<h:outputLabel for="aziendaBeanAziendaSede" value="Sede:"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3" id="aziendaBeanAziendaSede" >
+				<h:outputLabel for="aziendaBeanAziendaSedeCity" value="Città:"/>
+				<h:outputText id="aziendaBeanAziendaSedeCity" value="#{aziendaBean.azienda.city}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaSedeVia" value="Via:"/>
+				<h:outputText id="aziendaBeanAziendaSedeVia" value="#{aziendaBean.azienda.via}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaSedeNazione" value="Nazione:"/>
+				<h:outputText id="aziendaBeanAziendaSedeNazione" value="#{aziendaBean.azienda.nazione}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaSedeCap" value="Cap:"/>
+				<h:outputText id="aziendaBeanAziendaSedeCap" value="#{aziendaBean.azienda.cap}"/>
+				<h:outputText/>
+			</h:panelGrid>
+			<h:outputText/>
+			<h:outputLabel for="aziendaBeanAziendaReferente" value="Referente:"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3" id="aziendaBeanAziendaReferente" >
+				<h:outputLabel for="aziendaBeanAziendaReferenteName" value="Name:"/>
+				<h:outputText id="aziendaBeanAziendaReferenteName" value="#{aziendaBean.azienda.nomeReferente}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaReferenteSurename" value="Cognome:"/>
+				<h:outputText id="aziendaBeanAziendaReferenteSurename" value="#{aziendaBean.azienda.cognomeReferente}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaReferenteEmail" value="Email:"/>
+				<h:outputText id="aziendaBeanAziendaReferenteEmail" value="#{aziendaBean.azienda.email}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaReferenteTel" value="Tel:"/>
+				<h:outputText id="aziendaBeanAziendaReferenteTel" value="#{aziendaBean.azienda.tel}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaReferenteTelCell" value="Tel Cell:"/>
+				<h:outputText id="aziendaBeanAziendaReferenteTelCell" value="#{aziendaBean.azienda.telCell}"/>
+				<h:outputText/>
+				<h:outputLabel for="aziendaBeanAziendaReferenteFax" value="Fax:"/>
+				<h:outputText id="aziendaBeanAziendaReferenteFax" value="#{aziendaBean.azienda.fax}"/>
+				<h:outputText/>
+			</h:panelGrid>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{comuneBean.page}"/>
+		<f:event type="preRenderView" listener="#{comuneBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Comune entities"/>
+
+	<ui:define name="header">
+		Comune
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Comune entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="comuneBeanSearchDescrizione" value="Descrizione:"/>
+					<h:panelGroup>
+						<h:inputText id="comuneBeanSearchDescrizione" maxLength="50" value="#{comuneBean.search.descrizione}"/>
+						<h:message for="comuneBeanSearchDescrizione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="comuneBeanSearchProvincia" value="Provincia:"/>
+					<h:panelGroup>
+						<h:inputText id="comuneBeanSearchProvincia" maxLength="2" value="#{comuneBean.search.provincia}"/>
+						<h:message for="comuneBeanSearchProvincia" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="comuneBeanSearchZona" value="Zona:"/>
+					<h:panelGroup>
+						<h:inputText id="comuneBeanSearchZona" maxLength="1" value="#{comuneBean.search.zona}"/>
+						<h:message for="comuneBeanSearchZona" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="comuneBeanSearchProv1" value="Prov 1:"/>
+					<h:panelGroup>
+						<h:inputText id="comuneBeanSearchProv1" maxLength="2" value="#{comuneBean.search.prov1}"/>
+						<h:message for="comuneBeanSearchProv1" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="comuneBeanSearchProv2" value="Prov 2:"/>
+					<h:panelGroup>
+						<h:inputText id="comuneBeanSearchProv2" maxLength="2" value="#{comuneBean.search.prov2}"/>
+						<h:message for="comuneBeanSearchProv2" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{comuneBean.search}"/>
+					<h:commandLink value="Create New" action="#{comuneBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="comuneBeanPageItems" styleClass="data-table" value="#{comuneBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id Regione"/>
+					</f:facet>
+					<h:link outcome="/comune/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemIdRegione" value="#{_item.idRegione}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrizione"/>
+					</f:facet>
+					<h:link outcome="/comune/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescrizione" value="#{_item.descrizione}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Provincia"/>
+					</f:facet>
+					<h:link outcome="/comune/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemProvincia" value="#{_item.provincia}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Altitudine"/>
+					</f:facet>
+					<h:link outcome="/comune/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemAltitudine" value="#{_item.altitudine}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Zona"/>
+					</f:facet>
+					<h:link outcome="/comune/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemZona" value="#{_item.zona}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{comuneBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

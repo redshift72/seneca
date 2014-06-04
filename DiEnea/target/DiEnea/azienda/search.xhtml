@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{aziendaBean.page}"/>
+		<f:event type="preRenderView" listener="#{aziendaBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Azienda entities"/>
+
+	<ui:define name="header">
+		Azienda
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Azienda entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="aziendaBeanSearchNome" value="Nome:"/>
+					<h:panelGroup>
+						<h:inputText id="aziendaBeanSearchNome" value="#{aziendaBean.search.nome}"/>
+						<h:message for="aziendaBeanSearchNome" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="aziendaBeanSearchTipo" value="Tipo:"/>
+					<h:panelGroup>
+						<h:inputText id="aziendaBeanSearchTipo" value="#{aziendaBean.search.tipo}"/>
+						<h:message for="aziendaBeanSearchTipo" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="aziendaBeanSearchCFoPI" value="CF o PI:"/>
+					<h:panelGroup>
+						<h:inputText id="aziendaBeanSearchCFoPI" value="#{aziendaBean.search.CFoPI}"/>
+						<h:message for="aziendaBeanSearchCFoPI" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="aziendaBeanSearchDescrizione" value="Descrizione:"/>
+					<h:panelGroup>
+						<h:inputText id="aziendaBeanSearchDescrizione" value="#{aziendaBean.search.descrizione}"/>
+						<h:message for="aziendaBeanSearchDescrizione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{aziendaBean.search}"/>
+					<h:commandLink value="Create New" action="#{aziendaBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="aziendaBeanPageItems" styleClass="data-table" value="#{aziendaBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/azienda/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo"/>
+					</f:facet>
+					<h:link outcome="/azienda/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipo" value="#{_item.tipo}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="C Fo PI"/>
+					</f:facet>
+					<h:link outcome="/azienda/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemCFoPI" value="#{_item.CFoPI}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Descrizione"/>
+					</f:facet>
+					<h:link outcome="/azienda/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemDescrizione" value="#{_item.descrizione}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{aziendaBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

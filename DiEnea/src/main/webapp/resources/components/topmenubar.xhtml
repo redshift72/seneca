@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:a4j="http://richfaces.org/a4j"
+		xmlns:rich="http://richfaces.org/rich"
+		xmlns:composite="http://java.sun.com/jsf/composite">
+		
+		
+<composite:interface>
+	<composite:attribute name="credentials" />
+	<composite:attribute name="login" />
+	<composite:attribute name="dropdownmenu" />
+	<composite:attribute name="execute" />
+	<composite:attribute name="render" />
+</composite:interface>
+
+		
+		<composite:implementation  xmlns:my="http://java.sun.com/jsf/composite/components/my" >
+			
+			<rich:toolbar height="26px">
+			
+				<h:outputLink value="#" id="ll"  rendered="#{!cc.attrs.login.loggedIn}">
+				 <rich:componentControl event="click" operation="show" target="lp">
+					<a4j:param name="event" value="event" noEscape="true" />
+					<rich:hashParam>
+					 <a4j:param noEscape="true" name="top" value="jQuery(#{rich:element('ll')}.parentNode).offset().top + jQuery(#{rich:element('ll')}.parentNode).height()" />
+					 <a4j:param noEscape="true" name="left" value="jQuery(#{rich:element('ll')}.parentNode).offset().left" />
+					</rich:hashParam>
+				</rich:componentControl>
+					Login
+				</h:outputLink>
+			
+			<h:outputLink value="#" id="lo"  rendered="#{cc.attrs.login.loggedIn}" action="#{cc.attrs.login.logout}">
+				 <rich:componentControl event="click" operation="show" target="lp">
+					<a4j:param name="event" value="event" noEscape="true" />
+					<rich:hashParam>
+					 <a4j:param noEscape="true" name="top" value="jQuery(#{rich:element('ll')}.parentNode).offset().top + jQuery(#{rich:element('ll')}.parentNode).height()" />
+					 <a4j:param noEscape="true" name="left" value="jQuery(#{rich:element('ll')}.parentNode).offset().left" />
+					</rich:hashParam>
+				</rich:componentControl>
+					LogOut #{!login.currentUser.name}
+			</h:outputLink>
+			
+			<rich:popupPanel id="lp" autosized="true" modal="false"
+				moveable="false" resizeable="false" followByScroll="false">
+				<h:form id="popupform">
+				<my:loginForm credentials="#{cc.attrs.credentials}" login="#{cc.attrs.login}" execute="popupform" render="#{cc.attrs.render}"/>
+			    </h:form>
+			</rich:popupPanel>
+
+
+
+			<rich:dropDownMenu mode="ajax"  rendered="#{login.loggedIn}">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:graphicImage value="/images/icons/copy.gif"
+							styleClass="pic" alt="copy" />
+						<h:outputText value="File" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem label="New"
+					action="#{cc.attrs.dropdownmenu.doNew}"
+					icon="/images/icons/create_doc.gif">
+				</rich:menuItem>
+				<rich:menuItem label="Open"
+					action="#{cc.attrs.dropdownmenu.doOpen}"
+					icon="/images/icons/open.gif" />
+				<rich:menuGroup label="Save As...">
+					<rich:menuItem label="Save"
+						action="#{cc.attrs.dropdownmenu.doSave}"
+						icon="/images/icons/save.gif" />
+					<rich:menuItem label="Save All"
+						action="#{cc.attrs.dropdownmenu.doSaveAll}">
+						<f:facet name="icon">
+							<h:graphicImage
+								value="/images/icons/save_all.gif" alt="save_all" />
+						</f:facet>
+					</rich:menuItem>
+				</rich:menuGroup>
+				<rich:menuItem label="Close"
+					action="#{cc.attrs.dropdownmenu.doClose}" />
+				<rich:menuSeparator id="menuSeparator11" />
+				<rich:menuItem label="Exit"
+					action="#{cc.attrs.dropdownmenu.doExit}" />
+
+			</rich:dropDownMenu>
+
+			<rich:dropDownMenu mode="ajax" rendered="#{login.loggedIn}">
+				<f:facet name="label">
+					<h:panelGrid cellpadding="0" cellspacing="0"
+						columns="2" style="vertical-align:middle">
+						<h:outputText value="Links" />
+					</h:panelGrid>
+				</f:facet>
+				<rich:menuItem submitMode="client"
+					onclick="document.location.href='http://labs.jboss.com/jbossrichfaces/'">
+					<h:outputText value="RichFaces Home Page" />
+				</rich:menuItem>
+				<rich:menuItem submitMode="client"
+					onclick="document.location.href='http://jboss.com/index.html?module=bb&amp;op=viewforum&amp;f=261'">
+					<h:outputText value="RichFaces Forum" />
+				</rich:menuItem>
+			</rich:dropDownMenu>
+			</rich:toolbar>
+		</composite:implementation>
+</html>

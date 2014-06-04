@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"	
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{comuneBean.id}"/>
+		<f:event type="preRenderView" listener="#{comuneBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Comune"/>
+
+	<ui:define name="header">
+		Comune
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test="#{!empty comuneBean.id}">
+				Edit existing Comune
+			</c:when>
+			<c:otherwise>
+				Create a new Comune
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="comuneBeanComuneIdRegione" value="Id Regione:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneIdRegione" value="#{comuneBean.comune.idRegione}"/>
+					<h:message for="comuneBeanComuneIdRegione" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneDescrizione" value="Descrizione:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneDescrizione" maxLength="50" value="#{comuneBean.comune.descrizione}"/>
+					<h:message for="comuneBeanComuneDescrizione" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneProvincia" value="Provincia:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneProvincia" maxLength="2" value="#{comuneBean.comune.provincia}"/>
+					<h:message for="comuneBeanComuneProvincia" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneAltitudine" value="Altitudine:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneAltitudine" value="#{comuneBean.comune.altitudine}"/>
+					<h:message for="comuneBeanComuneAltitudine" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneZona" value="Zona:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneZona" maxLength="1" value="#{comuneBean.comune.zona}"/>
+					<h:message for="comuneBeanComuneZona" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneGradigiorno" value="Gradigiorno:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneGradigiorno" value="#{comuneBean.comune.gradigiorno}"/>
+					<h:message for="comuneBeanComuneGradigiorno" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneTempEsterna" value="Temp Esterna:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneTempEsterna" value="#{comuneBean.comune.tempEsterna}"/>
+					<h:message for="comuneBeanComuneTempEsterna" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneLatitudine" value="Latitudine:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneLatitudine" value="#{comuneBean.comune.latitudine}"/>
+					<h:message for="comuneBeanComuneLatitudine" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneLongitudine" value="Longitudine:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneLongitudine" value="#{comuneBean.comune.longitudine}"/>
+					<h:message for="comuneBeanComuneLongitudine" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneZonaVento" value="Zona Vento:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneZonaVento" value="#{comuneBean.comune.zonaVento}"/>
+					<h:message for="comuneBeanComuneZonaVento" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneZonaGeo" value="Zona Geo:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneZonaGeo" value="#{comuneBean.comune.zonaGeo}"/>
+					<h:message for="comuneBeanComuneZonaGeo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneProv1" value="Prov 1:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneProv1" maxLength="2" value="#{comuneBean.comune.prov1}"/>
+					<h:message for="comuneBeanComuneProv1" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneProv2" value="Prov 2:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneProv2" maxLength="2" value="#{comuneBean.comune.prov2}"/>
+					<h:message for="comuneBeanComuneProv2" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresGen" value="Pres Gen:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresGen" value="#{comuneBean.comune.presGen}"/>
+					<h:message for="comuneBeanComunePresGen" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresFeb" value="Pres Feb:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresFeb" value="#{comuneBean.comune.presFeb}"/>
+					<h:message for="comuneBeanComunePresFeb" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresMar" value="Pres Mar:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresMar" value="#{comuneBean.comune.presMar}"/>
+					<h:message for="comuneBeanComunePresMar" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresApr" value="Pres Apr:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresApr" value="#{comuneBean.comune.presApr}"/>
+					<h:message for="comuneBeanComunePresApr" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresMag" value="Pres Mag:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresMag" value="#{comuneBean.comune.presMag}"/>
+					<h:message for="comuneBeanComunePresMag" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresGiu" value="Pres Giu:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresGiu" value="#{comuneBean.comune.presGiu}"/>
+					<h:message for="comuneBeanComunePresGiu" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresLug" value="Pres Lug:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresLug" value="#{comuneBean.comune.presLug}"/>
+					<h:message for="comuneBeanComunePresLug" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresAgo" value="Pres Ago:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresAgo" value="#{comuneBean.comune.presAgo}"/>
+					<h:message for="comuneBeanComunePresAgo" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresSet" value="Pres Set:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresSet" value="#{comuneBean.comune.presSet}"/>
+					<h:message for="comuneBeanComunePresSet" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresOtt" value="Pres Ott:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresOtt" value="#{comuneBean.comune.presOtt}"/>
+					<h:message for="comuneBeanComunePresOtt" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresNov" value="Pres Nov:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresNov" value="#{comuneBean.comune.presNov}"/>
+					<h:message for="comuneBeanComunePresNov" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComunePresDic" value="Pres Dic:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComunePresDic" value="#{comuneBean.comune.presDic}"/>
+					<h:message for="comuneBeanComunePresDic" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="comuneBeanComuneCodiceIstat" value="Codice Istat:"/>
+				<h:panelGroup>
+					<h:inputText id="comuneBeanComuneCodiceIstat" maxLength="6" value="#{comuneBean.comune.codiceIstat}"/>
+					<h:message for="comuneBeanComuneCodiceIstat" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action="#{comuneBean.update}"/>
+				<c:choose>
+					<c:when test="#{!empty comuneBean.id}">
+						<h:link value="Cancel" outcome="view">
+							<f:param name="id" value="#{comuneBean.id}"/>
+						</h:link>
+						<h:commandLink value="Delete" action="#{comuneBean.delete}"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

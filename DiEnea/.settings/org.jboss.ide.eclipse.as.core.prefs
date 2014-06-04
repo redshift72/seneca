@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=src/main/resources/META-INF\nsrc/main/webapp/VAADIN\nresources/WhiteLine-ds.xml\nsrc/Init.java\nsrc/main/webapp/VAADIN/widgetsets\n

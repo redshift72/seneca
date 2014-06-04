@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+<rootpath>"/rest"</rootpath>
+<org>
+<jboss>
+<forge>
+<scaffold>
+<faces>
+<FacesScaffold_targetDir>/</FacesScaffold_targetDir>
+</faces>
+</scaffold>
+</forge>
+</jboss>
+</org>
+<rest>
+<applicationclass>
+<package>it.enea.lecop.eca.rest</package>
+<name>/home/fab/workspace/DiEnea/src/main/java/it/enea/lecop/eca/rest/JaxRsActivator.java</name>
+</applicationclass>
+</rest>
+</configuration>

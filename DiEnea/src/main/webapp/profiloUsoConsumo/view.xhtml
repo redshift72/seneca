@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{profiloUsoConsumoBean.id}"/>
+		<f:event type="preRenderView" listener="#{profiloUsoConsumoBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Profilo Uso Consumo"/>
+
+	<ui:define name="header">
+		Profilo Uso Consumo
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Profilo Uso Consumo
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoNome" value="Nome:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoNome" value="#{profiloUsoConsumoBean.profiloUsoConsumo.nome}"/>
+			<h:outputText/>
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoTipo" value="Tipo:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoTipo"  value="#{profiloUsoConsumoBean.profiloUsoConsumo.tipo}"/>
+			<h:outputText/>
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoDescrizione" value="Descrizione:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoDescrizione" value="#{profiloUsoConsumoBean.profiloUsoConsumo.descrizione}"/>
+			<h:outputText/>
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoConsumoElettricoTot" value="Consumo Elettrico Tot:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoConsumoElettricoTot" value="#{profiloUsoConsumoBean.profiloUsoConsumo.consumoElettricoTot}"/>
+			<h:outputText/>
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoConsumoTermicoTot" value="Consumo Termico Tot:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoConsumoTermicoTot" value="#{profiloUsoConsumoBean.profiloUsoConsumo.consumoTermicoTot}"/>
+			<h:outputText/>
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoConsumoAcquaTot" value="Consumo Acqua Tot:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoConsumoAcquaTot" value="#{profiloUsoConsumoBean.profiloUsoConsumo.consumoAcquaTot}"/>
+			<h:outputText/>
+			
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoUsoAcquaTot" value="Ore al giorno per uso Acqua:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoUsoAcquaTot" value="#{profiloUsoConsumoBean.profiloUsoConsumo.oreSuGiorniAcqua}"/>
+			<h:outputText/>
+			
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoUsoTermicoTot" value="Ore al giorno per uso Termico:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoUsoTermicoTot" value="#{profiloUsoConsumoBean.profiloUsoConsumo.oreSuGiorniTermico}"/>
+			<h:outputText/>
+			
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoUsoElettricoTot" value="Ore al giorno per uso Elettrico:"/>
+			<h:outputText id="profiloUsoConsumoBeanProfiloUsoConsumoUsoElettricoTot" value="#{profiloUsoConsumoBean.profiloUsoConsumo.oreSuGiorniElettrico}"/>
+			<h:outputText/>
+			
+			
+			<h:outputLabel for="profiloUsoConsumoBeanProfiloUsoConsumoComposizioneEdificio" value="Composizione Edificio:"/>
+			<h:link id="profiloUsoConsumoBeanProfiloUsoConsumoComposizioneEdificio" outcome="/viewvaadin/compedifici" value="#{profiloUsoConsumoBean.profiloUsoConsumo.composizioneEdificio.name}">
+				<f:param name="id" value="#{profiloUsoConsumoBean.profiloUsoConsumo.composizioneEdificio.id}"/>
+			</h:link>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

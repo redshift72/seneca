@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{composizioneEdificiBean.page}"/>
+		<f:event type="preRenderView" listener="#{composizioneEdificiBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Composizione Edifici entities"/>
+
+	<ui:define name="header">
+		Composizione Edifici
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Composizione Edifici entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="composizioneEdificiBeanSearchName" value="Name:"/>
+					<h:panelGroup>
+						<h:inputText id="composizioneEdificiBeanSearchName" value="#{composizioneEdificiBean.search.name}"/>
+						<h:message for="composizioneEdificiBeanSearchName" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="composizioneEdificiBeanSearchNoteDellaComposizione" value="Note Della Composizione:"/>
+					<h:panelGroup>
+						<h:inputText id="composizioneEdificiBeanSearchNoteDellaComposizione" value="#{composizioneEdificiBean.search.noteDellaComposizione}"/>
+						<h:message for="composizioneEdificiBeanSearchNoteDellaComposizione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="composizioneEdificiBeanSearchAzienda" value="Azienda:"/>
+					<h:panelGroup>
+						<h:selectOneMenu converter="#{aziendaBean.converter}" id="composizioneEdificiBeanSearchAzienda" value="#{composizioneEdificiBean.search.azienda}">
+							<f:selectItems value="#{aziendaBean.all}"  var="az"  itemLabel="#{az.nome}  (#{az.descrizione})" itemValue="#{az}"/>
+						</h:selectOneMenu>
+						<h:message for="composizioneEdificiBeanSearchAzienda" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="composizioneEdificiBeanSearchComuneUbicazione" value="Comune Ubicazione:"/>
+					<h:panelGroup>
+						<rich:select enableManualInput="true" defaultLabel="inizia a scrivere il comune" converter="#{comuneBean.converter}" id="composizioneEdificiBeanSearchComuneUbicazione" value="#{composizioneEdificiBean.search.comuneUbicazione}">
+							<f:selectItems value="#{comuneBean.all}"  var="n"  itemLabel="#{n.descrizione}  (#{n.provincia})"  itemValue="#{n}"/>
+						</rich:select>
+						<h:message for="composizioneEdificiBeanSearchComuneUbicazione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{composizioneEdificiBean.search}"/>
+					<h:commandLink value="Create New" action="#{composizioneEdificiBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="composizioneEdificiBeanPageItems" styleClass="data-table" value="#{composizioneEdificiBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Azienda"/>
+					</f:facet>
+					<h:link outcome="/composizioneEdifici/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemAzienda" value="#{_item.azienda.nome}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Comune Ubicazione"/>
+					</f:facet>
+					<h:link outcome="/composizioneEdifici/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemComuneUbicazione" value="#{_item.comuneUbicazione.descrizione}  (#{_item.comuneUbicazione.provincia})"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{composizioneEdificiBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

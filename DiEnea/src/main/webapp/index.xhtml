@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:my="http://java.sun.com/jsf/composite/components"
+     xmlns:myy="http://java.sun.com/jsf/composite/components/my"
+	template="/resources/scaffold/pageTemplate.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:h="http://java.sun.com/jsf/html">                                                
+
+	<ui:param name="pageTitle" value="Welcome to Seneca" />
+
+	<ui:define name="header">
+		Welcome to Seneca
+	</ui:define>
+
+	<ui:define name="subheader">
+	<h:outputLabel  rendered="#{!login.loggedIn}"  value="Inserisci le tue credenziali"/>	
+	</ui:define>
+
+	<ui:define name="main">
+	
+		<p>
+	<h:form id="loginForm">	
+	<div class="logincontentOpacity" style="margin-left:39%;margin-right:39%" >
+	<div class="logincontent" >
+	<h:panelGroup id="loginContent"  >
+	<h:panelGrid style="align:center" columns="2" columnClasses="titleCell" id="newLoginPanel" rendered="#{!login.loggedIn}" >
+      
+      
+      <h:outputLabel for="username"  rendered="#{!login.loggedIn}" value="Username:"/>
+      <h:inputText id="username" size="17" required="true" rendered="#{!login.loggedIn}" value="#{credentials.username}" requiredMessage="devi inserire uno username">
+         <rich:validator/>
+      </h:inputText>
+      
+
+      <h:outputLabel for="password" rendered="#{!login.loggedIn}"  value="Password:"/>
+      <h:inputSecret id="password" size="17"  required="true" rendered="#{!login.loggedIn}" value="#{credentials.password}" requiredMessage="devi inserire una password">
+         <rich:validator/>
+      </h:inputSecret>
+      
+      
+      <h:panelGrid columns="2" >
+                <a4j:commandButton id="login1" action="#{login.login}" value="Login"
+                                   execute="username,password" render="@all"  rendered="#{!login.loggedIn}"/>
+                 <a4j:commandButton id="cancel1" type="reset" immediate="true" value="Cancel" actionListener="#{credentials.cancel}" ignoreDupResponses="true"
+ requestDelay="100"   rendered="#{!login.loggedIn}"  />                   
+                
+      </h:panelGrid>
+      
+      <rich:messages style="color:red;margin:8px;" />
+   </h:panelGrid>
+       <a4j:commandButton id="logout1" action="#{login.logout}" value=" LogOut " execute="@form" render="@all"   rendered="#{login.loggedIn}"/>
+       <h:outputLabel value="#{login.currentUser.username}@#{login.currentDomain.name}" rendered="#{login.loggedIn}"/>
+       <h:outputLabel  value="Richiedi credenziali  " rendered="#{!login.loggedIn}"/> <h:outputLink value="mailto:#{versione.mailto}" rendered="#{!login.loggedIn}">#{versione.mailto}</h:outputLink>
+          
+          
+      </h:panelGroup> 
+      </div>  
+      </div>                          
+		</h:form>
+		
+		
+	<!--  	<myy:loginForm  credentials="#{credentials}" login= "#{login}"  execute="@form"  render="reg" />  -->
+		<!--	<a target="_blank" href="https://docs.jboss.org/author/display/FORGE">Documentation</a>   -->
+	<!--		| <a target="_blank" href="http://twitter.com/intent/tweet?text=I+just+built+and+deployed+a+webapp+using+%23Forge,+from+%23JBoss+-+Super+easy!+(+http://jboss.org/forge+)">Get Excited!</a> -->
+		<!--			<br /> <a target="_blank" href="http://jboss.org/forge"><br /> -->
+		<!--		Forge Project</a> | <a target="_blank"    href="https://lists.jboss.org/mailman/listinfo/forge-users">User -->
+		<!--		List</a> | <a target="_blank" href="https://issues.jboss.org/browse/FORGE">Report an issue</a>  -->
+		</p> 
+	<!--	<p style="text-align: right; padding-top: 50px"> -->
+		<!--	<a target="_blank" href="http://jboss.org"> -->
+	<!--	<img src="#{resource['jboss-community.png']}" alt="JBoss and JBoss Community" width="254" height="31" border="0" />   -->
+	<!--		</a> <br /> -->
+	<!--	</p>  -->
+	</ui:define>
+
+</ui:composition>

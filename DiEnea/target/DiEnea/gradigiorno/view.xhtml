@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{gradigiornoBean.id}"/>
+		<f:event type="preRenderView" listener="#{gradigiornoBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Gradigiorno"/>
+
+	<ui:define name="header">
+		Gradigiorno
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Gradigiorno
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="gradigiornoBeanGradigiornoCodReg" value="Cod Reg:"/>
+			<h:outputText id="gradigiornoBeanGradigiornoCodReg" value="#{gradigiornoBean.gradigiorno.codReg}"/>
+			<h:outputText/>
+			<h:outputLabel for="gradigiornoBeanGradigiornoCodProv" value="Cod Prov:"/>
+			<h:outputText id="gradigiornoBeanGradigiornoCodProv" value="#{gradigiornoBean.gradigiorno.codProv}"/>
+			<h:outputText/>
+			<h:outputLabel for="gradigiornoBeanGradigiornoAltitudine" value="Altitudine:"/>
+			<h:outputText id="gradigiornoBeanGradigiornoAltitudine" value="#{gradigiornoBean.gradigiorno.altitudine}"/>
+			<h:outputText/>
+			<h:outputLabel for="gradigiornoBeanGradigiornoComune" value="Comune:"/>
+			<h:outputText id="gradigiornoBeanGradigiornoComune" value="#{gradigiornoBean.gradigiorno.comune}"/>
+			<h:outputText/>
+			<h:outputLabel for="gradigiornoBeanGradigiornoGradiGiorni" value="Gradi Giorni:"/>
+			<h:outputText id="gradigiornoBeanGradigiornoGradiGiorni" value="#{gradigiornoBean.gradigiorno.gradiGiorni}"/>
+			<h:outputText/>
+			<h:outputLabel for="gradigiornoBeanGradigiornoZonaClimatica" value="Zona Climatica:"/>
+			<h:outputText id="gradigiornoBeanGradigiornoZonaClimatica" value="#{gradigiornoBean.gradigiorno.zonaClimatica}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

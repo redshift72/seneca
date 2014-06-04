@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<ui:composition template="/WEB-INF/templates/desktop.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
+                xmlns:myy="http://java.sun.com/jsf/composite/components/my">                                                       >
+    <ui:define name="content">
+       <h:outputStylesheet name="app.css" library="css"/>
+       <h:outputScript target="head" name="showMessage.js" library="js"/>
+
+       <h1>Welcome to DiEnea</h1>
+
+       <p>Login</p>
+
+       <h:form id="reg">
+          <rich:panel id="newMemberPanel" header="Register (Bean Validation example)" headerClass="header" rendered="#{!login.loggedIn}" >
+        <!--       <my:memberForm member="#{newMember}"/>  -->
+       <!--  <my:topmenubar  credentials="#{credentials}" login= "#{login}" dropdownmenu="#{dropdownmenu}" execute="@form"  render="newMemberPanel" /> --> 
+     <myy:loginForm  credentials="#{credentials}" login= "#{login}"  execute="@form"  render="reg" />  
+
+             <p>Enforces annotation-based constraints defined on the model class.</p>
+
+             
+          </rich:panel>
+          <br />
+
+          <div id="newMemberMessages" class="update"/>
+
+          <rich:collapsiblePanel id="memberList" header="Members" headerClass="header"
+                                 title="Click to expand/collapse">
+             <rich:dataTable var="_member" value="#{members}" rendered="#{not empty members}" style="width : 100%">
+                   <rich:column>
+                      <a4j:commandLink styleClass="no-decor" render="memberPanel" execute="@this" oncomplete="#{rich:component('memberPopup')}.show()">
+                         View
+                         <f:setPropertyActionListener target="#{memberRegistration.member}" value="#{_member}" />
+                      </a4j:commandLink>
+                   </rich:column>
+                   <rich:column>
+                      <f:facet name="header">Id</f:facet>
+                      #{_member.id}
+                   </rich:column>
+                   <rich:column>
+                      <f:facet name="header">Name</f:facet>
+                      #{_member.name}
+                   </rich:column>
+                   <rich:column>
+                      <f:facet name="header">Email</f:facet>
+                      #{_member.email}
+                   </rich:column>
+                   <rich:column>
+                      <f:facet name="header">Phone #</f:facet>
+                      #{_member.phoneNumber}
+                   </rich:column>
+                   <rich:column>
+                      <f:facet name="header">REST URL</f:facet>
+                      <a href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>
+                   </rich:column>
+                   <f:facet name="footer">
+                      REST URL for all members: <a href="#{request.contextPath}/rest/members">/rest/members</a>
+                   </f:facet>
+                </rich:dataTable><h:panelGroup rendered="#{empty members}">
+                <em>No registered members.</em>
+             </h:panelGroup>
+             
+          </rich:collapsiblePanel>
+
+          <rich:popupPanel id="memberPopup" modal="true" onmaskclick="#{rich:component('memberPopup')}.hide()"
+                           domElementAttachment="form" autosized="true">
+             <f:facet name="header">
+                <h:outputText value="Member Details"/>
+             </f:facet>
+             <f:facet name="controls">
+                <h:outputLink value="#" onclick="#{rich:component('memberPopup')}.hide(); return false;">
+                   X
+                </h:outputLink>
+             </f:facet>
+             <h:panelGroup id="memberPanel"> 
+                  <my:memberForm member="#{member}"/>  
+               </h:panelGroup>  
+          </rich:popupPanel>
+
+      <!--      <a4j:push address="pushCdi" ondataavailable="showMessage(event.rf.data)">  -->
+        <!--      <a4j:ajax event="dataavailable" render="memberList" />  -->
+      <!--     </a4j:push>  -->
+
+       </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

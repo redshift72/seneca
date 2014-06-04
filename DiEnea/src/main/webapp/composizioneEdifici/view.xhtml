@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{composizioneEdificiBean.id}"/>
+		<f:event type="preRenderView" listener="#{composizioneEdificiBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Composizione Edifici"/>
+
+	<ui:define name="header">
+		Composizione Edifici
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Composizione Edifici
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="composizioneEdificiBeanComposizioneEdificiName" value="Name:"/>
+			<h:outputText id="composizioneEdificiBeanComposizioneEdificiName" value="#{composizioneEdificiBean.composizioneEdifici.name}"/>
+			<h:outputText/>
+			<h:outputLabel for="composizioneEdificiBeanComposizioneEdificiNoteDellaComposizione" value="Note Della Composizione:"/>
+			<h:outputText id="composizioneEdificiBeanComposizioneEdificiNoteDellaComposizione" value="#{composizioneEdificiBean.composizioneEdifici.noteDellaComposizione}"/>
+			<h:outputText/>
+			<h:outputLabel for="composizioneEdificiBeanComposizioneEdificiAzienda" value="Azienda:"/>
+			<h:link id="composizioneEdificiBeanComposizioneEdificiAzienda" outcome="/azienda/view" value="#{composizioneEdificiBean.composizioneEdifici.azienda.nome}">
+				<f:param name="id" value="#{composizioneEdificiBean.composizioneEdifici.azienda.id}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="composizioneEdificiBeanComposizioneEdificiEdifici" value="Edifici:"/>
+			<h:dataTable id="composizioneEdificiBeanComposizioneEdificiEdifici" styleClass="data-table" value="#{composizioneEdificiBean.composizioneEdifici.edifici}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/edificio/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemNomeEdificio" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Edificio"/>
+					</f:facet>
+					<h:link outcome="/edificio/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipoEdificio" value="#{_item.tipoEdificio.descrizione}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="composizioneEdificiBeanComposizioneEdificiProfilo" value="Profilo:"/>
+			<h:dataTable id="composizioneEdificiBeanComposizioneEdificiProfilo" styleClass="data-table" value="#{composizioneEdificiBean.composizioneEdifici.profilo}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome"/>
+					</f:facet>
+					<h:link outcome="/profiloUsoConsumo/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemNome" value="#{_item.nome}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Tipo Profilo"/>
+					</f:facet>
+					<h:link outcome="/profiloUsoConsumo/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemTipo" value="#{_item.tipo.descrizione}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descrizione"/>
+							</f:facet>
+							<h:link outcome="/profiloUsoConsumo/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemDescrizioneProfilo" value="#{_item.descrizione}"/>
+							</h:link>
+						</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="composizioneEdificiBeanComposizioneEdificiComuneUbicazione" value="Comune Ubicazione:"/>
+			<h:link id="composizioneEdificiBeanComposizioneEdificiComuneUbicazione" outcome="/comune/view" value="#{composizioneEdificiBean.composizioneEdifici.comuneUbicazione.descrizione}  (#{composizioneEdificiBean.composizioneEdifici.comuneUbicazione.provincia})">
+				<f:param name="id" value="#{composizioneEdificiBean.composizioneEdifici.comuneUbicazione.id}"/>
+			</h:link>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

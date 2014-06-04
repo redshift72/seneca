@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{risultatoValutazioneInterventoBean.page}"/>
+		<f:event type="preRenderView" listener="#{risultatoValutazioneInterventoBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Risultato Valutazione Intervento entities"/>
+
+	<ui:define name="header">
+		Risultato Valutazione Intervento
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Risultato Valutazione Intervento entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<h:panelGroup styleClass="search">
+
+				<h:panelGrid columnClasses="label,component,required" columns="3">
+					<h:outputLabel for="risultatoValutazioneInterventoBeanSearchValutazione" value="Valutazione:"/>
+					<h:panelGroup>
+						<h:selectOneMenu converter="#{valutazioneBean.converter}" id="risultatoValutazioneInterventoBeanSearchValutazione" value="#{risultatoValutazioneInterventoBean.search.valutazione}">
+							<f:selectItems value="#{valutazioneBean.all}"/>
+						</h:selectOneMenu>
+						<h:message for="risultatoValutazioneInterventoBeanSearchValutazione" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="risultatoValutazioneInterventoBeanSearchIntervento" value="Intervento:"/>
+					<h:panelGroup>
+						<h:selectOneMenu converter="#{interventoMigliorativoBean.converter}" id="risultatoValutazioneInterventoBeanSearchIntervento" value="#{risultatoValutazioneInterventoBean.search.intervento}">
+							<f:selectItems value="#{interventoMigliorativoBean.all}"/>
+						</h:selectOneMenu>
+						<h:message for="risultatoValutazioneInterventoBeanSearchIntervento" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:panelGroup styleClass="buttons">
+					<h:commandLink value="Search" action="#{risultatoValutazioneInterventoBean.search}"/>
+					<h:commandLink value="Create New" action="#{risultatoValutazioneInterventoBean.create}"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:dataTable id="risultatoValutazioneInterventoBeanPageItems" styleClass="data-table" value="#{risultatoValutazioneInterventoBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Valutazione"/>
+					</f:facet>
+					<h:link outcome="/risultatoValutazioneIntervento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemValutazione" value="#{_item.valutazione.descrizione}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Intervento"/>
+					</f:facet>
+					<h:link outcome="/risultatoValutazioneIntervento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemIntervento" value="#{_item.intervento.descrizione} (#{_item.intervento.howResultNamed})"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Risultato"/>
+					</f:facet>
+					<h:link outcome="/risultatoValutazioneIntervento/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemRisultato" value="#{_item.risultato}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{risultatoValutazioneInterventoBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

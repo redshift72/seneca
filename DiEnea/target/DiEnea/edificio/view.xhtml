@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{edificioBean.id}"/>
+		<f:event type="preRenderView" listener="#{edificioBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Edificio"/>
+
+	<ui:define name="header">
+		Edificio
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Edificio
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="edificioBeanEdificioNome" value="Nome:"/>
+			<h:outputText id="edificioBeanEdificioNome" value="#{edificioBean.edificio.nome}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioAreaCalpestabile" value="Area Calpestabile:"/>
+			<h:outputText id="edificioBeanEdificioAreaCalpestabile" value="#{edificioBean.edificio.areaCalpestabile}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioAreaDisperdente" value="Area Disperdente:"/>
+			<h:outputText id="edificioBeanEdificioAreaDisperdente" value="#{edificioBean.edificio.areaDisperdente}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioVolumeTotale" value="Volume Totale:"/>
+			<h:outputText id="edificioBeanEdificioVolumeTotale" value="#{edificioBean.edificio.volumeTotale}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioConsumoElettricoTot" value="Consumo Elettrico Tot:"/>
+			<h:outputText id="edificioBeanEdificioConsumoElettricoTot" value="#{edificioBean.edificio.consumoElettricoTot}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioConsumoTermicoTot" value="Consumo Termico Tot:"/>
+			<h:outputText id="edificioBeanEdificioConsumoTermicoTot" value="#{edificioBean.edificio.consumoTermicoTot}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioConsumoIdricoTot" value="Consumo Idrico Tot:"/>
+			<h:outputText id="edificioBeanEdificioConsumoIdricoTot" value="#{edificioBean.edificio.consumoIdricoTot}"/>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioTipoEdificio" value="Tipo Edificio:"/>
+			<h:link id="edificioBeanEdificioTipoEdificio" outcome="/tipoEdificio/view" value="#{edificioBean.edificio.tipoEdificio}">
+				<f:param name="id" value="#{edificioBean.edificio.tipoEdificio.id}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioComposizione" value="Composizione:"/>
+			<h:link id="edificioBeanEdificioComposizione" outcome="/composizioneEdifici/view" value="#{edificioBean.edificio.composizione}">
+				<f:param name="id" value="#{edificioBean.edificio.composizione.id}"/>
+			</h:link>
+			<h:outputText/>
+			<h:outputLabel for="edificioBeanEdificioEsposizioneVetri" value="Esposizione Vetri:"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3" id="edificioBeanEdificioEsposizioneVetri" rendered="#{!empty edificioBean.edificio.esposizioneVetri}">
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateNord" value="Sup Vetrate Nord:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateNord" value="#{edificioBean.edificio.esposizioneVetri.supVetrateNord}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateNordEst" value="Sup Vetrate Nord Est:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateNordEst" value="#{edificioBean.edificio.esposizioneVetri.supVetrateNordEst}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateEst" value="Sup Vetrate Est:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateEst" value="#{edificioBean.edificio.esposizioneVetri.supVetrateEst}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateSudEst" value="Sup Vetrate Sud Est:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateSudEst" value="#{edificioBean.edificio.esposizioneVetri.supVetrateSudEst}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateSud" value="Sup Vetrate Sud:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateSud" value="#{edificioBean.edificio.esposizioneVetri.supVetrateSud}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateSudOvest" value="Sup Vetrate Sud Ovest:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateSudOvest" value="#{edificioBean.edificio.esposizioneVetri.supVetrateSudOvest}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateOvest" value="Sup Vetrate Ovest:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateOvest" value="#{edificioBean.edificio.esposizioneVetri.supVetrateOvest}"/>
+				<h:outputText/>
+				<h:outputLabel for="edificioBeanEdificioEsposizioneVetriSupVetrateNordOvest" value="Sup Vetrate Nord Ovest:"/>
+				<h:outputText id="edificioBeanEdificioEsposizioneVetriSupVetrateNordOvest" value="#{edificioBean.edificio.esposizioneVetri.supVetrateNordOvest}"/>
+				<h:outputText/>
+			</h:panelGrid>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true"/>
+			<h:link value="Create New" outcome="create"/>
+		</div>
+	</ui:define>
+
+</ui:composition>
